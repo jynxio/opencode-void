@@ -11,7 +11,7 @@ const VOID_AGENT = {
   description: "A pure context without any injected prompts.",
   options: {},
   prompt: nanoid(),
-  permission: { "*": "ask" } as unknown as {}, // OpenCode 支持 permission: { "*": "ask" }，但类型定义不对，因此需要扭转一下
+  permission: { "*": "ask" } as unknown as {}, // OpenCode supports `permission: { "*": "ask" }`, but the type definition is wrong, so we need to cast it.
 } as const satisfies AgentConfig;
 
 function createPlugin() {
@@ -22,7 +22,7 @@ function createPlugin() {
       },
 
       "chat.params": async (input, output) => {
-        // input 的类型有误，故人工校正
+        // The type of `input` is incorrect, so we manually correct it.
         const agent = input.agent as unknown as { name: string };
         const isCallByVoidAgent = VOID_AGENT.name === agent.name.trim().toLowerCase();
         const isProvidedByOpenAI = input.model.providerID === OPENAI_PROVIDER_ID;
@@ -30,7 +30,7 @@ function createPlugin() {
         if (!isCallByVoidAgent) return;
         if (!isProvidedByOpenAI) return;
 
-        // OpenAI Auth 模型有 `instructions` 字段，作用同 System Prompt，但优先级更高
+        // OpenAI Auth models have an `instructions` field; it works like the System Prompt, but has higher priority.
         output.options.instructions = "";
       },
 
