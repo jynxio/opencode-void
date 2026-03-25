@@ -36,6 +36,7 @@
     "@typescript/native-preview": "7.0.0-dev.20260325.1",
     "bumpp": "11.0.1",
     "fs-extra": "11.3.4",
+    "type-fest": "5.5.0",
     "typescript": "6.0.2",
     "vite-plus": "0.1.14"
   },
