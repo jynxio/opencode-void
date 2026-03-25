@@ -1,16 +1,16 @@
 {
-  "name": "opencode-void",
+  "name": "@jynxio/opencode-plugin",
   "version": "0.1.0",
-  "description": "An OpenCode plugin for a pure context without any injected prompts.",
-  "homepage": "https://github.com/jynxio/opencode-void",
+  "description": "Jynxio's OpenCode Plugins",
+  "homepage": "https://github.com/jynxio/opencode-plugin",
   "bugs": {
-    "url": "https://github.com/jynxio/opencode-void/issues"
+    "url": "https://github.com/jynxio/opencode-plugin/issues"
   },
   "license": "MIT",
   "author": "Jynxio <me@jynxio.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jynxio/opencode-void.git"
+    "url": "git+https://github.com/jynxio/opencode-plugin.git"
   },
   "files": [
     "dist"
@@ -28,7 +28,8 @@
     "dev": "vp pack --watch",
     "test": "vp test",
     "check": "vp check",
-    "prepublishOnly": "vp run build"
+    "prepublishOnly": "vp run build",
+    "ship": "node ./scripts/index.ts"
   },
   "devDependencies": {
     "@types/fs-extra": "11.0.4",
@@ -50,7 +51,6 @@
   "dependencies": {
     "@opencode-ai/plugin": "1.3.2",
     "@opencode-ai/sdk": "1.3.2",
-    "nanoid": "5.1.7",
-    "zod": "4.3.6"
+    "nanoid": "5.1.7"
   }
 }
