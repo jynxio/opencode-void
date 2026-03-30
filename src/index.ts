@@ -1,1 +1,1 @@
-export { createPlugin as createVoidPlugin } from "./void";
+export { createPlugin as createVoidAgent } from "./_agents/void";
