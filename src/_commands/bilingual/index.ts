@@ -6,16 +6,24 @@ import prompt from "./_prompt";
 
 type CommandConfig = ValueOf<NonNullable<Config["command"]>>;
 
-const BILINGUAL_COMMAND = {
+const PRESET_COMMAND_CONFIG = {
   description: "Response refinement",
   template: prompt,
-} as const satisfies CommandConfig;
+} satisfies CommandConfig;
 
-function createPlugin() {
+function createPlugin(
+  commandName: string = "bilingual",
+  commandConfig: CommandConfig = { template: "" },
+) {
+  const mergedCommandConfig = {
+    ...PRESET_COMMAND_CONFIG,
+    ...commandConfig,
+  } satisfies CommandConfig;
+
   const plugin: Plugin = async () => {
     return {
       config: async (input) => {
-        (input.command ||= {}).bilingual = BILINGUAL_COMMAND;
+        (input.command ||= {})[commandName] = mergedCommandConfig;
       },
     };
   };
