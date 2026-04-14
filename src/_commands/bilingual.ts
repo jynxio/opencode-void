@@ -1,4 +1,9 @@
-export default `\
+import { createCommand } from "./create-command";
+
+const bilingualCommand = createCommand({ name: "bilingual", config: { template: getPrompt() } });
+
+function getPrompt() {
+    return `\
 ## 背景
 
 我会用英语和你对话，你要遵守下述规则，收到后回复 \`Copy That\`。
@@ -60,3 +65,6 @@ LGTM
 
 Some good habits are...
 \`\`\``;
+}
+
+export { bilingualCommand };
