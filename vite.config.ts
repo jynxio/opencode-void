@@ -13,5 +13,5 @@ export default defineConfig({
             typeCheck: true,
         },
     },
-    fmt: { tabWidth: 4 },
+    fmt: { tabWidth: 4, printWidth: 110 },
 });
