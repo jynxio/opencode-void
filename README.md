@@ -1,35 +1,34 @@
-<h2>
+<h2 align="center">
   <samp>Summary</samp>
 </h2>
 
-<samp>Jynxio's OpenCode Plugin Collection:</samp>
-
-1. <samp>Void Agents: An agent that provides a session context with no preset system prompt.</samp>
-2. <samp>...</samp>
+<p align="center">
+  <samp>Jynxio's OpenCode Plugin Collection:</samp>
+</p>
 
 <br />
 <br />
 <br />
 
-<h2>
+<h2 align="center">
   <samp>Getting Started</samp>
 </h2>
 
-<samp>Step 1: Install</samp>
+<p align="center"><samp>Step 1: Install</samp></p>
 
 ```
 pnpm i @jynxio/opencode-plugin
 ```
 
 <br />
+<br />
 
-<samp>Step 2: Configure</samp>
+<p align="center"><samp>Step 2: configure</samp></p>
 
-```ts
-// .config/opencode/plugins/void.ts
-import { createVoidPlugin } from "@jynxio/opencode-plugin";
-
-const voidPlugin = createVoidPlugin();
-
-export { voidPlugin };
 ```
+export { voidAgent } from "@jynxio/opencode-plugin"
+```
+
+<br />
+
+> <samp>It also includes additional prebuilt Agents and Commands, and exposes `createAgent` and `createCommand` for building your own.</samp>
