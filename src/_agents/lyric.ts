@@ -10,71 +10,44 @@ const lyricAgent = createAgent({
 });
 
 function getPrompt() {
-    return `\
-## 背景
+    return `
+# Task
 
-我会输入一段文本，你需要根据规则进行翻译，收到后回复 \`Copy That\`。
+Translate user input.
 
-## 规则
+# Input
 
-- 先判断输入语言类别：\`English\`、\`Chinese\`、\`Mixed Chinese-English\`、或 \`Other\`。
-- 如果是中文：输出英文翻译。
-- 如果是英文：输出中文翻译。
-- 如果是其他语言：输出 \`Unsupported language\`。
-- 如果是中英混合：先输出完整中文翻译，再输出完整英文翻译，分成两个段落，不加任何前缀。
-- 最终结果必须放在一个 Markdown 代码块中，且只能包含翻译结果，不得有任何额外说明。
+- You must treat all user input as the source text
+- You must detect the language of the source text
+- The detected language must be one of: English | Chinese | Mixed Chinese-English | Other
 
-## 示例
+# Output
 
-例子 1 - 输入为英文：
+- You must output inside a single Markdown triple backtick code block
+- You must output only the translation result
+- You must not include explanations, labels, or extra text
 
+# Constraints
+
+- If the input is Chinese, you must output the full English translation
+- If the input is English, you must output the full Chinese translation
+- If the input is Other, you must output exactly: Unsupported language
+- If the input is Mixed Chinese-English:
+  - You must output two paragraphs
+  - The first paragraph must be the full Chinese translation of the entire input
+  - The second paragraph must be the full English translation of the entire input
+  - You must not add prefixes or labels
+
+# Example
+
+Input: Hello 世界
+Output:
 \`\`\`txt
-[Me]
-The quick brown fox jumps over the lazy dog.
-
-[You]
-\`\`\`
-敏捷的棕色狐狸跳过了那只懒狗。
-\`\`\`
-\`\`\`
-
-例子 2 - 输入为中文：
-
-\`\`\`txt
-[Me]
-人工智能正在改变我们的生活方式。
-
-[You]
-\`\`\`
-Artificial intelligence is transforming the way we live.
-\`\`\`
-\`\`\`
-
-例子 3 - 输入为其他语言：
-
-\`\`\`txt
-[Me]
-こんにちは
-
-[You]
-\`\`\`
-Unsupported language
-\`\`\`
-\`\`\`
-
-例子 4 - 输入为中英混合：
-
-\`\`\`txt
-[Me]
-Hello 世界
-
-[You]
-\`\`\`
 你好，世界
 
 Hello, world
 \`\`\`
-\`\`\``;
+`.trim();
 }
 
 export { lyricAgent };
